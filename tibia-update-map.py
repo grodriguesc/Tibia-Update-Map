@@ -164,14 +164,14 @@ var_copy_minimap_content = tk.BooleanVar(value=True)
 chk_copy_minimap_content = tk.Checkbutton(app, text="Atualizar Mapa e Combinar Marcações", variable=var_copy_minimap_content)
 chk_copy_minimap_content.grid(row=1, column=0, columnspan=3, padx=10, pady=5)
 
-# LabelFrame para opções avançadas
-advanced_frame = ttk.LabelFrame(app, text="Opções Avançadas")
-advanced_frame.grid(row=2, column=0, columnspan=3, padx=10, pady=10, sticky='ew')
-
 # Checkbox para mostrar opções avançadas
 var_show_advanced = tk.BooleanVar()
 chk_show_advanced = tk.Checkbutton(app, text="Mostrar Opções Avançadas", variable=var_show_advanced, command=lambda: toggle_advanced_options())
 chk_show_advanced.grid(row=2, column=0, columnspan=3, padx=10, pady=5)
+
+# LabelFrame para opções avançadas
+advanced_frame = ttk.LabelFrame(app, text="Opções Avançadas")
+advanced_frame.grid(row=3, column=0, columnspan=3, padx=10, pady=10, sticky='ew')
 
 # Seleção do segundo arquivo de marcações
 tk.Label(advanced_frame, text="Selecione um minimapmarkers.bin:").grid(row=0, column=0, padx=10, pady=5, sticky='e')
@@ -204,10 +204,10 @@ tk.Button(advanced_frame, text="Salvar em", command=lambda: select_folder(entry_
 # Barra de progresso
 progress_var = tk.IntVar()
 progress_bar = ttk.Progressbar(app, variable=progress_var, maximum=100)
-progress_bar.grid(row=8, column=0, columnspan=3, padx=10, pady=10, sticky='ew')
+progress_bar.grid(row=4, column=0, columnspan=3, padx=10, pady=10, sticky='ew')
 
 # Botão para combinar os arquivos
-tk.Button(app, text="Combinar Arquivos", command=start_combination).grid(row=9, column=0, columnspan=3, pady=20)
+tk.Button(app, text="Combinar Arquivos", command=start_combination).grid(row=5, column=0, columnspan=3, pady=20)
 
 # Função para habilitar/desabilitar campos com base nos checkboxes
 def toggle_entries():
@@ -242,6 +242,10 @@ var_show_advanced.trace_add("write", lambda *args: toggle_advanced_options())
 # Inicialmente desabilitar os campos
 toggle_entries()
 toggle_advanced_options()
+
+# Informação do Desenvolvedor
+developer_info = tk.Label(app, text="Desenvolvido por: Nescau Concertado\nEmail: grodriguesc@outlook.com.br", font=("Arial", 10), fg="gray")
+developer_info.grid(row=6, column=0, columnspan=3, pady=10)
 
 # Pasta temporária para downloads
 temp_dir = os.path.join(os.path.expanduser('~'), 'TibiaMapTemp')
